@@ -1,0 +1,23 @@
+{{template "partials/head" .}}
+{{template "partials/header" .}}
+<script>
+	function search(ele) {
+	if(event.key === 'Enter') {
+		fetch(`${window.location.host}/api/search?query=${encodeURIComponent(ele.value)}`)
+		.then(response => response.json())
+		.then((response) => {
+			// ?
+		})
+		.catch(function(error) {
+			console.log(error);
+		}); 
+	}
+}
+</script>
+
+<div class="col-md-5 mx-auto">
+	<div class="input-group">
+		<input class="form-control border-end-0 border" type="search" placeholder="search" onkeydown="search(this)">
+	</div>
+</div>
+{{template "partials/footer" .}}
