@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/TorchedSammy/Hachidori/fetcher"
 	"github.com/gofiber/fiber/v2"
 	"github.com/michiwend/gomusicbrainz"
-	"github.com/TorchedSammy/Hachidori/fetcher"
 )
 
 var mb, _ = gomusicbrainz.NewWS2Client(
@@ -22,7 +22,7 @@ type Release struct{
 func (r *Release) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct{
 		ID gomusicbrainz.MBID `json:"mbid"`
-		Title string `json:title`
+		Title string `json:"title"`
 	}{
 		ID: r.mbr.ID,
 		Title: r.mbr.Title,

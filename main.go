@@ -17,15 +17,11 @@ func main() {
 	})
 	app.Static("/", "./assets")
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return render(c, "index", fiber.Map{})
-	})
-
 	initAPI(app)
 	exit := make(chan bool)
 
 	fmt.Println(app.Listen(fmt.Sprintf(":%d", *port)))
-	fmt.Println("Listening on port %d", *port)
+	fmt.Printf("Listening on port %d\n", *port)
 	<-exit
 }
 
