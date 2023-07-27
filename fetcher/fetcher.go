@@ -30,7 +30,7 @@ type Result struct{
 	Name string
 	Artist string
 	Album string
-	Downloads []Download `json:"downlads"`
+	Downloads []Download `json:"downloads"`
 }
 
 func artistString(ac gomusicbrainz.ArtistCredit) string {
