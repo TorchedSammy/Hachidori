@@ -50,7 +50,7 @@ func (Ilkpop) Fetch(music *gomusicbrainz.Release) []Result {
 	}
 
 	songs := scrape.FindAll(root, matcher)
-	artist := artistString(music.ReleaseGroup.ArtistCredit)
+	artist := Artist(music.ReleaseGroup.ArtistCredit)
 
 	// TODO: properly handle multi cd here
 	fmt.Println(music)

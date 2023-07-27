@@ -23,9 +23,15 @@ func (r *Release) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct{
 		ID gomusicbrainz.MBID `json:"mbid"`
 		Title string `json:"title"`
+		Artist string `json:"artist"`
+		Type string `json:"type"`
+		Disambiguation string `json:"disambiguation"`
 	}{
 		ID: r.mbr.ID,
 		Title: r.mbr.Title,
+		Artist: fetcher.Artist(r.mbr.ArtistCredit),
+		Type: r.mbr.ReleaseGroup.Type,
+		Disambiguation: r.mbr.Disambiguation,
 	})
 }
 
@@ -37,7 +43,8 @@ func initAPI(app *fiber.App) {
 		fmt.Println(resp)
 
 		releases := []Release{}
-		for _, rel := range resp.Releases {
+		for _, r := range resp.Releases {
+			rel, _ := mb.LookupRelease(gomusicbrainz.MBID(r.ID), "media", "recordings", "artist-credits", "release-groups")
 			releases = append(releases, Release{rel})
 		}
 

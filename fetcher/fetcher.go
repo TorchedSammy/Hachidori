@@ -33,7 +33,7 @@ type Result struct{
 	Downloads []Download `json:"downloads"`
 }
 
-func artistString(ac gomusicbrainz.ArtistCredit) string {
+func Artist(ac gomusicbrainz.ArtistCredit) string {
 	sb := strings.Builder{}
 
 	for _, credit := range ac.NameCredits {
